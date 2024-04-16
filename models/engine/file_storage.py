@@ -38,14 +38,12 @@ class FileStorage:
         """ delete obj from __objects in the dictionary """
         if obj is None:
             return
-        #generate key for the object
+        # generate key for the object
         obj_key = "{}.{}".format(type(obj).__name__, obj.id)
 
-        #Remove object from __objects dictionary if key exists
+        # Remove object from __objects dictionary if key exists
         if obj_key in self.__objects:
             del self.__objects[obj_key]
-
-
 
     def reload(self):
         """Loads storage dictionary from file"""
@@ -67,6 +65,6 @@ class FileStorage:
             with open(FileStorage.__file_path, 'r') as f:
                 temp = json.load(f)
                 for key, val in temp.items():
-                        self.all()[key] = classes[val['__class__']](**val)
+                    self.all()[key] = classes[val['__class__']](**val)
         except FileNotFoundError:
             pass
