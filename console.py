@@ -114,17 +114,58 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """ Create an object of any class"""
+        """ Create an object of any class with given parameters
+        command syntax: cretae <CLass name> <param 1> <param 2> <param 2>
+        Param Syntax: <key name>=<value>
+        """
+
         if not args:
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
+
+        # split args into classname and paramaters
+        args = args.split()
+        class_name = args[0]
+
+        if class_name not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
+
+        # create a new instance of the class
+        new_instance = HBNBCommand.classes[class_name]()
+
+        # Parse parameters and set attributes
+        params = args[1:]
+        for param in params:
+            # Split each parameter into key and value
+            key, value = param.split('=')
+             
+            # Remove quotation marks from string value and replace
+            # underscores with spaces
+            if value.startswith('"') and value.endswith('"'):
+                value = value[1:-1].replace('_', ' ')
+            elif '.' in value:
+                # convert to float
+                try:
+                    value = float(value)
+                except ValueError:
+                    # skip invalid float values
+                    continue
+                else:
+                    # convert to int
+                    try:
+                        value = int(value)
+                    except ValueError:
+                        # skip invalid integer values
+                        continue
+
+                # set the attribute if he key is valid
+                setattr(new_instance, key, value)
+
+        # save the new instance and print it's ID
+        storage.new(new_instance)
         storage.save()
         print(new_instance.id)
-        storage.save()
 
     def help_create(self):
         """ Help information for the create method """
