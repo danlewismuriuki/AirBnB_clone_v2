@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env/ bash
 
 # Install Nginx if it not already installed
-apt-get update
-apt-get install nginx
+apt-get -y update
+apt-get -y install nginx
 
 # Create the folder /data/ if it doesn’t already exist
 # Create the folder /data/web_static/ if it doesn’t already exist
@@ -11,7 +11,6 @@ apt-get install nginx
 ufw allow 'Nginx HTTP'
 
 mkdir -p /data/web_static/
-
 mkdir -p /data/web_static/shared/
 # Create the folder /data/web_static/releases/test/ if it doesn’t already exist
 mkdir -p /data/web_static/releases/test/
