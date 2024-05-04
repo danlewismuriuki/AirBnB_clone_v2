@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/bin/bash
 
 # Install Nginx if it not already installed
 apt-get update
@@ -10,11 +10,11 @@ apt-get install nginx
 # Create the folder /data/web_static/shared/ if it doesn’t already exist
 ufw allow 'Nginx HTTP'
 
-mkdir -P /data/web_static/
+mkdir -p /data/web_static/
 
-mkdir -P /data/web_static/shared/
+mkdir -p /data/web_static/shared/
 # Create the folder /data/web_static/releases/test/ if it doesn’t already exist
-mkdir -P /data/web_static/releases/test/
+mkdir -p /data/web_static/releases/test/
 
 echo "<html>
   <head>
