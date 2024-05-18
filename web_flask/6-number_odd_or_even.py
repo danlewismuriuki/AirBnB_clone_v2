@@ -34,15 +34,18 @@ def python_text(text='is cool'):
     text = text.replace('_', ' ')
     return 'python {}'.format(text)
 
+
 @app.route('/number/<int:n>', strict_slashes=False)
 def number_text(n):
     """Display 'n is a number' only if n is an integer."""
     return '{} is a number'.format(n)
 
+
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
     """Display a HTML page with the content 'Number: n' inside an H1 tag."""
     return render_template('5-number.html', n=n)
+
 
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
 def number_odd_or_even(n):
