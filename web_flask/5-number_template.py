@@ -34,10 +34,12 @@ def python_text(text='is cool'):
     text = text.replace('_', ' ')
     return 'python {}'.format(text)
 
+
 @app.route('/number/<int:n>', strict_slashes=False)
 def number_text(n):
     """Display 'n is a number' only if n is an integer."""
     return '{} is a number'.format(n)
+
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
